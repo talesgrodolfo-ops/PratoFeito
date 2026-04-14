@@ -20,7 +20,6 @@ function moverPonteiro(valor) {
 function calcularnota(valor){
     let nota = 0;
     if (valor<=0.3) {
-        if (valor <= 0.3) {
         nota = valor*333.33;
     }
     else if (valor <= 0.4) {
@@ -34,7 +33,6 @@ function calcularnota(valor){
         nota=0;
     }
     return nota;
-}
 
 function notageral(){
     let nota = 0;
