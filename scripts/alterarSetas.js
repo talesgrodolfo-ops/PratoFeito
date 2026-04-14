@@ -26,24 +26,30 @@ function calcularnota(valor) {
         nota = 100;
     }
     else if (valor <= 1) {
-        nota = (-166, 67 * valor) + 166, 67;
+        nota = (-166.67 * valor) + 166.67;
+    } if (valor > 1) {
+        nota = 0;
     }
-    if (valor > 1) {
-    nota = 0;
-}
-return nota;
+    return nota;
 }
 
 
 
 function notageral() {
     let nota = 0;
+    prodfinal = JSON.parse(localStorage.getItem("prodfinal"));
     nota += calcularnota(prodfinal.valor_energetico);
+    console.log("Nota Calorias: " + calcularnota(prodfinal.valor_energetico));
     nota += calcularnota(prodfinal.proteinas)
+    console.log("Nota Proteínas: " + calcularnota(prodfinal.proteinas));
     nota += calcularnota(prodfinal.carboidratos)
+    console.log("Nota Carboidratos: " + calcularnota(prodfinal.carboidratos));
     nota += calcularnota(prodfinal.gorduras)
+    console.log("Nota Gorduras: " + calcularnota(prodfinal.gorduras));
     nota += calcularnota(prodfinal.fibras)
+    console.log("Nota Fibras: " + calcularnota(prodfinal.fibras));
     nota += calcularnota(prodfinal.sodio)
+    console.log("Nota Sódio: " + calcularnota(prodfinal.sodio));
     nota = nota / 6
     return nota;
 }
@@ -51,9 +57,13 @@ function notageral() {
 
 document.addEventListener("DOMContentLoaded", async () => {
 
+
+    console.log("Nota geral: "+notageral());
     prodfinal = JSON.parse(localStorage.getItem("prodfinal"));
     console.log(prodfinal);
 
+
+    console.log("Nota Geral: " + notageral());
 
     setacaloria = document.getElementById("ponteiroprocalorias");
     console.log("Posição Calorias: " + moverPonteiro(prodfinal.valor_energetico));
@@ -72,6 +82,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     setasodio = document.getElementById("ponteiroprosodio");
     console.log("Posição Sódio: " + moverPonteiro(prodfinal.sodio));
+
 
     let index = 0;
     for (let i = 0; i <= 100; i += 1) {
