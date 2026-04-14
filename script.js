@@ -80,10 +80,18 @@ async function carregarProdutos() {
                 const id = parseInt(entity.id.split("_")[1]);
 
                 if (produtoAtivo && produtoAtivo.id === id) {
+                    if (modelosAtivos.length()>1) {
+                        modeloAtivo = modelosAtivos[0].modelo;
+                        produtoAtivo = modelosAtivos[0];
+                        modeloAtivo.setAttribute("scale",
+                            `${produtoAtivo.escala.x} ${produtoAtivo.escala.y} ${produtoAtivo.escala.z}`);
+                        atualizarPainel();
+                    }else{
                     modeloAtivo = null;
                     produtoAtivo = null;
                     document.getElementById("nome").style.display = "none";
                     document.getElementById("peso").style.display = "none";
+                    }
                 }
 
                 modelosAtivos = modelosAtivos.filter(p => p.id !== id);
