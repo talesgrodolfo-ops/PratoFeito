@@ -1,35 +1,4 @@
-const produtosSalvos = [
-  {
-    "id": 0,
-    "nome": "Tomate",
-    "modelo": "https://raw.githubusercontent.com/maLu70/RepositorioModel-PratoFeito/refs/heads/main/tomato/scene.gltf",
-    "foto": "https://raw.githubusercontent.com/maLu70/RepositorioModel-PratoFeito/main/img/tomate.webp",
-    "peso": 0,
-    "categoria": "Fibra",
-    "valor_energetico": 15,
-    "proteinas": 1.1,
-    "carboidratos": 3.1,
-    "gorduras": 0.2,
-    "fibras": 1.2,
-    "sodio": 1,
-    "escala": { "x": 0.20, "y": 0.20, "z": 0.20 }
-  },
-  {
-    "id": 6,
-    "nome": "Arroz",
-    "modelo": "https://raw.githubusercontent.com/maLu70/RepositorioModel-PratoFeito/refs/heads/main/rice/scene.gltf",
-    "foto": "https://raw.githubusercontent.com/maLu70/RepositorioModel-PratoFeito/main/img/arroz.jpg",
-    "peso": 0,
-    "categoria": "Carboidrato",
-    "valor_energetico": 128.3,
-    "proteinas": 2.5,
-    "carboidratos": 28.1,
-    "gorduras": 0.2,
-    "fibras": 1.6,
-    "sodio": 1,
-    "escala": { "x": 0.15, "y": 0.15, "z": 0.15 }
-  }
-];
+const produtosSalvos = JSON.parse(localStorage.getItem('produtos')) || [];
 
 
 const produtos = produtosSalvos;
