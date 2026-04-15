@@ -28,7 +28,7 @@
       "gorduras": 0.5,
       "fibras": 3.4,
       "sodio": 0,
-      "escala": { "x": 0.02, "y": 0.02, "z": 0.02 }
+      "escala": { "x": 0.2, "y": 0.2, "z": 0.2 }
     },
     {
       "id": 2,
@@ -184,7 +184,7 @@
       "id": 12,
       "nome": "Peixe Frito",
       "modelo": "https://raw.githubusercontent.com/maLu70/RepositorioModel-PratoFeito/refs/heads/main/fried_fish/scene.gltf",
-      "foto": "https://raw.githubusercontent.com/maLu70/RepositorioModel-PratoFeito/main/img/peixe-frito.webp",
+      "foto": "https://raw.githubusercontent.com/maLu70/RepositorioModel-PratoFeito/main/img/peixeFrito.jpg",
       "peso": 100,
       "categoria": "Proteína",
       "valor_energetico": 223,
