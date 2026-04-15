@@ -57,6 +57,7 @@ function notageral() {
 
 document.addEventListener("DOMContentLoaded", async () => {
 
+    localStorage.removeItem("produtos");
 
     console.log("Nota geral: "+notageral());
     prodfinal = JSON.parse(localStorage.getItem("prodfinal"));

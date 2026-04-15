@@ -250,3 +250,13 @@ h4 {
     width: 90%;
 
 }
+#voltar {
+    background-color: #FF0002;
+    transition: 0.3s;
+    width: 85%;
+    height: 28px;
+}
+
+#voltar:hover {
+    background-color: #EE0004;
+}
