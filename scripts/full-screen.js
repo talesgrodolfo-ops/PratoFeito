@@ -10,12 +10,16 @@ function proximap() {
     bloco.style.zIndex = "10";
 }
 
-function comoJogar() {
-    window.location.replace("./resources/regras.html");
+if (document.getElementById("tutorial")) {
+    document.getElementById("tutorial").addEventListener("click", () => {
+        window.location.replace("./resources/regras.html");
+    });
 }
 
-function incial() {
-    window.location.replace("../index.html");
+if (document.getElementById("voltar")) {
+    document.getElementById("voltar").addEventListener("click", () => {
+        window.location.replace("../index.html");
+    });
 }
 
 function continuar() {
