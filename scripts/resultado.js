@@ -53,5 +53,4 @@ function telafinal() {
 
     localStorage.setItem("prodfinal", JSON.stringify(prodfinal));
     window.location.href = "resultado.html";
-    localStorage.removeItem("produtos");
 }
