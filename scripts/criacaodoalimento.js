@@ -1,7 +1,8 @@
 const produtosSalvos = JSON.parse(localStorage.getItem('produtos')) || [];
 
-
+console.log(produtosSalvos);
 const produtos = produtosSalvos;
+
 
 if (produtos.length <= 0) {
     const alimentoDiv = document.createElement('div');

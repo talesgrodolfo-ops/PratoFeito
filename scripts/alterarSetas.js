@@ -57,8 +57,6 @@ function notageral() {
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-    localStorage.removeItem("produtos");
-
     console.log("Nota geral: "+notageral());
     prodfinal = JSON.parse(localStorage.getItem("prodfinal"));
     console.log(prodfinal);
@@ -128,6 +126,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         await new Promise(resolve => setTimeout(resolve, 30));
     }
 
-
+localStorage.removeItem("produtos");
 
 });
