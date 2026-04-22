@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: "Inter", sans-serif;
 
     display: flex;
     flex-direction: column;
@@ -39,6 +39,9 @@ body {
     font-weight: bold;
     color: white;
     font-size: 1.8rem;
+
+    font-family: "Inter", sans-serif;
+
 }
 
 #prod p:first-child {
@@ -61,6 +64,8 @@ body {
 
     border-radius: .5rem;
     border: none;
+
+    font-family: "Inter", sans-serif;
 }
 
 #menos {

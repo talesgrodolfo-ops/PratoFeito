@@ -251,12 +251,23 @@ h4 {
 
 }
 #voltar {
+    width: 85%;
+    height: 2.5rem;
+
+    font-size: 1rem;
+    color: white;
+    font-weight: bold;
+
+    border-radius: .5rem;
+    border: none;
+}
+
+#voltar {
     background-color: #FF0002;
     transition: 0.3s;
-    width: 85%;
-    height: 28px;
 }
 
 #voltar:hover {
-    background-color: #EE0004;
+    background-color: #5a0002;
+    cursor: pointer;
 }
