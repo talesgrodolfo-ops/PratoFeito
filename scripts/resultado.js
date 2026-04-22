@@ -4,10 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function telafinal() {
-
-
     localStorage.removeItem('prodfinal');
-    localStorage.removeItem("produtos");
+
     prodfinal = {
         peso: 0,
         valor_energetico: 0,
@@ -55,4 +53,5 @@ function telafinal() {
 
     localStorage.setItem("prodfinal", JSON.stringify(prodfinal));
     window.location.href = "resultado.html";
+    localStorage.removeItem("produtos");
 }

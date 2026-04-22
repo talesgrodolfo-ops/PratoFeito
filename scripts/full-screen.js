@@ -23,6 +23,5 @@ if (document.getElementById("voltar")) {
 }
 
 function continuar() {
-    localStorage.setItem("produtos", localStorage.getItem("produtos"));
     window.location.replace("../index.html?fs=1");
 }
