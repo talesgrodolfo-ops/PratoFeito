@@ -7,7 +7,6 @@ let modelosDetectados = [];
 
 try {
     let produtosanteriores = localStorage.getItem("produtos");
-
     if (produtosanteriores) {
         modelosDetectados = JSON.parse(produtosanteriores);
     }
@@ -91,7 +90,7 @@ async function carregarProdutos() {
         });
 
     } catch (erro) {
-        console.error("Erro ao carregar JSON:", erro);
+        alert("Ocorreu um erro ao carregar os produtos. Por favor, tente novamente mais tarde.");
     }
 }
 

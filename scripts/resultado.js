@@ -7,6 +7,7 @@ function telafinal() {
 
 
     localStorage.removeItem('prodfinal');
+    localStorage.removeItem("produtos");
     prodfinal = {
         peso: 0,
         valor_energetico: 0,
