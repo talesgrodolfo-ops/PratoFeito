@@ -67,13 +67,33 @@ if (produtos.length <= 0) {
         const botDiminuir = document.createElement('button');
         botDiminuir.textContent = "-";
         botDiminuir.className = "botaoDiminuir";
+
         botDiminuir.onclick = function() {
-            if (produto.peso > 0) {
+            if (produto.peso > 10 && produto.peso <=990) {
+
                 produto.peso -= 10;
+                produto.valor_energetico -= (produto.valor_energetico / produto.peso) * 10;
+                produto.proteinas -= (produto.proteinas / produto.peso) * 10;
+                produto.carboidratos -= (produto.carboidratos / produto.peso) * 10;
+                produto.gorduras -= (produto.gorduras / produto.peso) * 10;
+                produto.fibras -= (produto.fibras / produto.peso) * 10;
+                produto.sodio -= (produto.sodio / produto.peso) * 10;
+
                 console.log(`Peso do produto ${produto.nome} diminuído para ${produto.peso}g`);
                 pesoP.textContent = `${produto.peso}g`;
                 localStorage.setItem('produtos', JSON.stringify(produtos));
+            }else{
+                confirmacao = confirm(`Deseja remover o produto ${produto.nome} do prato?`);
+                if (!confirmacao) {
+                    return;
+                }else{
+                produtos.splice(produtos.indexOf(produto), 1);
+                localStorage.setItem('produtos', JSON.stringify(produtos));
+                console.log(`Produto ${produto.nome} removido do prato`);
+                alimentoDiv.remove();
+                window.location.reload();
             }
+        }
         }
 
         const pesoP = document.createElement('p');
@@ -83,10 +103,24 @@ if (produtos.length <= 0) {
         botAumentar.textContent = "+";
         botAumentar.className = "botAumentar";
         botAumentar.onclick = function() {
-            produto.peso += 10;
-            console.log(`Peso do produto ${produto.nome} aumentado para ${produto.peso}g`);
-            pesoP.textContent = `${produto.peso}g`;
-            localStorage.setItem('produtos', JSON.stringify(produtos));
+
+            if (produto.peso >= 10 && produto.peso < 990) {
+                produto.peso += 10;
+                produto.valor_energetico += (produto.valor_energetico / produto.peso) * 10;
+                produto.proteinas += (produto.proteinas / produto.peso) * 10;
+                produto.carboidratos += (produto.carboidratos / produto.peso) * 10;
+                produto.gorduras += (produto.gorduras / produto.peso) * 10;
+                produto.fibras += (produto.fibras / produto.peso) * 10;
+                produto.sodio += (produto.sodio / produto.peso) * 10;
+
+                console.log(`Peso do produto ${produto.nome} aumentado para ${produto.peso}g`);
+                pesoP.textContent = `${produto.peso}g`;
+                localStorage.setItem('produtos', JSON.stringify(produtos));
+                console.log(produtos);
+            }
+            else{
+                
+            }
         }
 
         infDiv.appendChild(h3);
