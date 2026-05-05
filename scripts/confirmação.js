@@ -37,8 +37,6 @@ if (produtos.length <= 0) {
 
     container.appendChild(alimentoDiv);
 
-
-
 } else {
     produtos.forEach(produto => {
         console.log(produto);
@@ -66,10 +64,10 @@ if (produtos.length <= 0) {
         const h4 = document.createElement('h4');
         h4.textContent = produto.categoria;
 
-        const botoodiminuir = document.createElement('button');
-        botoodiminuir.textContent = "-";
-        botoodiminuir.className = "botaoDiminuir";
-        botoodiminuir.onclick = function() {
+        const botDiminuir = document.createElement('button');
+        botDiminuir.textContent = "-";
+        botDiminuir.className = "botaoDiminuir";
+        botDiminuir.onclick = function() {
             if (produto.peso > 0) {
                 produto.peso -= 10;
                 console.log(`Peso do produto ${produto.nome} diminuído para ${produto.peso}g`);
@@ -81,10 +79,10 @@ if (produtos.length <= 0) {
         const pesoP = document.createElement('p');
         pesoP.textContent = `${produto.peso}g`;
 
-        const botaoaumentar = document.createElement('button');
-        botaoaumentar.textContent = "+";
-        botaoaumentar.className = "botaoAumentar";
-        botaoaumentar.onclick = function() {
+        const botAumentar = document.createElement('button');
+        botAumentar.textContent = "+";
+        botAumentar.className = "botAumentar";
+        botAumentar.onclick = function() {
             produto.peso += 10;
             console.log(`Peso do produto ${produto.nome} aumentado para ${produto.peso}g`);
             pesoP.textContent = `${produto.peso}g`;
@@ -101,9 +99,9 @@ if (produtos.length <= 0) {
         alimentoDiv.appendChild(bloc1Div);
         alimentoDiv.appendChild(blocPesos);
 
-        blocPesos.appendChild(botoodiminuir);
+        blocPesos.appendChild(botDiminuir);
         blocPesos.appendChild(pesoP);
-        blocPesos.appendChild(botaoaumentar);
+        blocPesos.appendChild(botAumentar);
 
         container.appendChild(alimentoDiv);
 
