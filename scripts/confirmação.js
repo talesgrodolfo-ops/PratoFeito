@@ -49,6 +49,9 @@ if (produtos.length <= 0) {
         const bloc1Div = document.createElement('div');
         bloc1Div.className = 'bloc1';
 
+        const blocPesos = document.createElement('div');
+        blocPesos.className = 'blocPesos';
+
         const img = document.createElement('img');
         img.src = produto.foto;
         img.alt = produto.nome;
@@ -63,17 +66,44 @@ if (produtos.length <= 0) {
         const h4 = document.createElement('h4');
         h4.textContent = produto.categoria;
 
+        const botoodiminuir = document.createElement('button');
+        botoodiminuir.textContent = "-";
+        botoodiminuir.className = "botaoDiminuir";
+        botoodiminuir.onclick = function() {
+            if (produto.peso > 0) {
+                produto.peso -= 10;
+                console.log(`Peso do produto ${produto.nome} diminuído para ${produto.peso}g`);
+                pesoP.textContent = `${produto.peso}g`;
+                localStorage.setItem('produtos', JSON.stringify(produtos));
+            }
+        }
+
         const pesoP = document.createElement('p');
         pesoP.textContent = `${produto.peso}g`;
 
+        const botaoaumentar = document.createElement('button');
+        botaoaumentar.textContent = "+";
+        botaoaumentar.className = "botaoAumentar";
+        botaoaumentar.onclick = function() {
+            produto.peso += 10;
+            console.log(`Peso do produto ${produto.nome} aumentado para ${produto.peso}g`);
+            pesoP.textContent = `${produto.peso}g`;
+            localStorage.setItem('produtos', JSON.stringify(produtos));
+        }
+
         infDiv.appendChild(h3);
         infDiv.appendChild(h4);
+
 
         bloc1Div.appendChild(img);
         bloc1Div.appendChild(infDiv);
 
         alimentoDiv.appendChild(bloc1Div);
-        alimentoDiv.appendChild(pesoP);
+        alimentoDiv.appendChild(blocPesos);
+
+        blocPesos.appendChild(botoodiminuir);
+        blocPesos.appendChild(pesoP);
+        blocPesos.appendChild(botaoaumentar);
 
         container.appendChild(alimentoDiv);
 

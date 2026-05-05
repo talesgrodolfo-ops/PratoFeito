@@ -1,3 +1,4 @@
+
 const produtosSalvos = JSON.parse(localStorage.getItem('produtos')) || [];
 
 console.log(produtosSalvos);

@@ -124,3 +124,8 @@ a-scene {
     display: none !important;
 }
 
+/* @media screen and (orientation: portrait){
+    body{
+        display: none;
+    }
+} */
