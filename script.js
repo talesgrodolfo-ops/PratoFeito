@@ -4,6 +4,7 @@ let produtoAtivo = null;
 let produtos = [];
 let modelosAtivos = [];
 let modelosDetectados = [];
+let produtosnoPrato = [];
 
 try {
     let produtosanteriores = localStorage.getItem("produtos");
@@ -143,7 +144,7 @@ function atualizarProduto(produto, pesoAdicionado) {
 }
 
 function mais() {
-    if (modeloAtivo && produtoAtivo) {
+    if (modeloAtivo && produtoAtivo && produtoAtivo.peso < 990) {
         atualizarProduto(produtoAtivo, 10);
         const scale = modeloAtivo.getAttribute("scale");
         const newScale = {
@@ -160,7 +161,7 @@ function mais() {
 }
 
 function menos() {
-    if (modeloAtivo && produtoAtivo) {
+    if (modeloAtivo && produtoAtivo && produtoAtivo.peso > 10) {
         atualizarProduto(produtoAtivo, -10);
 
         const scale = modeloAtivo.getAttribute("scale");
@@ -261,3 +262,12 @@ function salvar() {
 
 }
 document.querySelector("a-scene").addEventListener("loaded", carregarProdutos);
+
+
+
+AdicionarAlimento = function() {
+    if (produtoAtivo) {
+        produtosnoPrato.push(produtoAtivo);
+        localStorage.setItem("produtosnoPrato", JSON.stringify(produtosnoPrato));
+    }
+}
