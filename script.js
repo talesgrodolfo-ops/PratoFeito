@@ -264,10 +264,44 @@ function salvar() {
 document.querySelector("a-scene").addEventListener("loaded", carregarProdutos);
 
 
+function criarModal(mensagem) {
+    const modal = document.createElement("div");
+    modal.className = "modal";
+    modal.textContent = mensagem;
+    modal.style.position = "fixed";
+    modal.style.top = "80%";
+    modal.style.left = "50%";
+    modal.style.transform = "translate(-50%, 75%)";
+    modal.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+    modal.style.color = "#fff";
+    modal.style.padding = "20px";
+    modal.style.borderRadius = "10px";
+    modal.style.zIndex = "1000";
+    modal.style.textAlign = "center";
+    document.body.appendChild(modal);
+    setTimeout(() => {
+        document.querySelector(".modal").remove();
+    }, 3000);
+}
 
-AdicionarAlimento = function() {
+function AdicionarAlimento() {
+    const modal = document.createElement("div");
     if (produtoAtivo) {
+        if (produtoAtivo.peso !== produtosnoPrato.filter(p => p.id !== produtoAtivo.id).map(p => p.peso)[0] && produtosnoPrato.some(p => p.id === produtoAtivo.id)) {
+            criarModal(`O Peso do alimento ${produtoAtivo.nome} foi alterado!.`);
+        } else if (produtosnoPrato.some(p => p.id === produtoAtivo.id)) {
+            criarModal(`O produto ${produtoAtivo.nome} já está no prato.`);
+        } else {
+            criarModal(`O alimento ${produtoAtivo.nome} Foi adicionado ao prato!.`);
+        }
+
+
+        produtosnoPrato = produtosnoPrato.filter(p => p.id !== produtoAtivo.id);
+        console.log(produtosnoPrato);
         produtosnoPrato.push(produtoAtivo);
         localStorage.setItem("produtosnoPrato", JSON.stringify(produtosnoPrato));
+    } else {
+        criarModal(`Não foi detectado nenhum alimento para adicionar ao prato. Por favor, escaneie um alimento primeiro.`);
     }
+    console.log(produtosnoPrato.some(p => p.id === produtoAtivo.id)[0].peso);
 }

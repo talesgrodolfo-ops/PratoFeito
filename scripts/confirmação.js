@@ -1,7 +1,16 @@
-const produtosSalvos = localStorage.getItem("produtos");
-const produtosnoPrato = JSON.parse(localStorage.getItem("produtosnoPrato"));
-const produtos = JSON.parse(produtosSalvos);
-produto+= produtosnoPrato;
+let produtosSalvos = localStorage.getItem("produtos");
+let produtosnoPrato = JSON.parse(localStorage.getItem("produtosnoPrato"));
+let produtos = [];
+
+if (produtosSalvos) {
+    produtos = JSON.parse(produtosSalvos);
+}
+produtosnoPrato.forEach(produto => {
+    if (!produtos.some(p => p.nome === produto.nome)) {
+        produtos.push(produto);
+    }
+});
+console.log(produtos);
 
 
     produtos.forEach(produto => {
@@ -53,13 +62,13 @@ produto+= produtosnoPrato;
                 if (!confirmacao) {
                     return;
                 }else{
-                produtos.splice(produtos.indexOf(produto), 1);
-                localStorage.setItem('produtos', JSON.stringify(produtos));
-                console.log(`Produto ${produto.nome} removido do prato`);
-                alimentoDiv.remove();
-                window.location.reload();
-            }
-        }
+                    produtos.splice(produtos.indexOf(produto), 1);
+                    localStorage.setItem('produtos', JSON.stringify(produtos));
+                    console.log(`Produto ${produto.nome} removido do prato`);
+                    alimentoDiv.remove();
+                    window.location.reload();
+                }
+            }   
         }
 
         const pesoP = document.createElement('p');
@@ -104,5 +113,4 @@ produto+= produtosnoPrato;
         blocPesos.appendChild(botAumentar);
 
         container.appendChild(alimentoDiv);
-
     });
