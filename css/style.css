@@ -50,16 +50,37 @@ body {
 
 #controls {
     display: flex;
-    z-index: 9999999999;
     justify-content: space-between;
-    height: 15%;
+
+    z-index: 9999999999;
+    
+    height: 30%;
+
+    border: red solid 2px;
+}
+
+#botsMaisMenos {
+    border: solid blue 2px;
+    width: 10%;
+}
+
+#botsJogabilidade {
+    border: solid green 2px;
+    width: 40%;
+}
+
+#botsMaisMenos, #botsJogabilidade {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
 }
 
 #menos,
 #mais {
-    width: 12%;
+    width: 100%;
 
-    font-size: 3rem;
+    font-size: 2.5rem;
     color: white;
 
     border-radius: .5rem;
