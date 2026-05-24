@@ -72,3 +72,41 @@ button {
     z-index: 3;
 }
 
+
+#AvisoOrientacao {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-image: url("https://malu70.github.io/mindAR/img/xadVerde.png");
+  justify-content: center;
+  align-items: center;
+}
+
+#cardAviso {
+  background-color: white;
+  border-radius: 1.5rem;
+  width: 85vw;
+  max-width: 420px;
+  padding: 48px 32px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#textoAviso {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111;
+  text-align: center;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media screen and (orientation: portrait) and (max-width: 768px) {
+  #AvisoOrientacao {
+    display: flex;
+  }
+}

@@ -35,7 +35,7 @@ function telafinal() {
         prodfinal.valor_energetico = (prodfinal.valor_energetico/2000).toFixed(2);
     }
     if (prodfinal.proteinas > 0) {
-        prodfinal.proteinas = (prodfinal.proteinas/300).toFixed(2);
+        prodfinal.proteinas = (prodfinal.proteinas/50).toFixed(2);
     }
     if (prodfinal.carboidratos > 0) {
         prodfinal.carboidratos = (prodfinal.carboidratos/300).toFixed(2);

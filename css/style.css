@@ -16,10 +16,21 @@ body {
     display: none;
 }
 
+a-scene {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+a-scene canvas {
+    z-index: 0;
+}
+
 #game {
     width: 90%;
     height: 90%;
-
+    z-index: 10;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -158,9 +169,3 @@ a-scene {
     width: 55%;
     height:fit-content;
 }
-
-/* @media screen and (orientation: portrait){
-    body{
-        display: none;
-    }
-} */

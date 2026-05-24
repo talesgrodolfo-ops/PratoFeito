@@ -22,6 +22,13 @@ if (document.getElementById("voltar")) {
     });
 }
 
-function continuar() {
+function finalizar() {
+    
+    localStorage.removeItem("produtos");
+    localStorage.removeItem("produtosnoPrato");
+    window.location.replace("../index.html?fs=1");
+}
+
+function retornarPrato() {
     window.location.replace("../index.html?fs=1");
 }

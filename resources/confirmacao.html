@@ -2,6 +2,8 @@
 <html lang="pt-br">
 
 <head>
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informações do Prato</title>
@@ -17,17 +19,25 @@
 
         <h1>Alimentos no prato</h1>
 
-        
+        <script src="../scripts/confirmação.js"></script>
 
         <div id="buttons">
-            <button id="voltar" onclick="continuar()" type="button">Voltar ao prato</button>
+            <button id="voltar" onclick="retornarPrato()" type="button">Voltar ao prato</button>
             <button id="confirmar" type="button" onclick="telafinal()">Confirmar</button>
         </div>
 
     </div>
-    <script src="../scripts/confirmação.js"></script>
+    
     <script src="../scripts/resultado.js"></script>
 </body>
+
+<div id="AvisoOrientacao">
+  <div id="cardAviso">
+    <img src="../img/RotacioneCelular.gif" alt="Gire o celular">
+    <p id="textoAviso">Para melhor experiência<br>vire o seu celular</p>
+  </div>
+</div>
+
 
 
 </html>

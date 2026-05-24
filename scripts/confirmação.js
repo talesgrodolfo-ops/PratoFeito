@@ -17,13 +17,14 @@ if (produtosnoPrato) {
 }
 console.log(produtos);
 
-
-if (produtos.length == 0) {
+addEventListener("DOMContentLoaded", () => {
+    if (produtos.length == 0) {
     const confirmar = document.getElementById("confirmar");
     confirmar.style.backgroundColor = "gray";
     confirmar.onclick = null;
     confirmar.style.cursor = "not-allowed";
-}
+    }
+});
 
 produtos.forEach(produto => {
     console.log(produto);
@@ -56,13 +57,12 @@ produtos.forEach(produto => {
     botDiminuir.className = "botaoDiminuir";
 
     const botremover = document.createElement('button');
-    botremover.textContent = "Remover";
+    botremover.innerHTML = `<i class="fas fa-trash"></i>`;
     botremover.className = "botaoRemover";
-    botremover.style.backgroundColor = "#ff4d4d";
-    botremover.style.color = "white";
-    botremover.style.width = "25px";
-    botremover.style.height = "25px";
-
+    botremover.style.color = "red";
+    botremover.style.backgroundColor = "white";
+    botremover.style.border = "none";
+    
     botremover.onclick = function () {
         confirmacao = confirm(`Deseja remover o produto ${produto.nome} do prato?`);
         if (!confirmacao) {

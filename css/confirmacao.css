@@ -46,6 +46,7 @@ h1 {
     justify-content: space-between;
 
     box-shadow: 0 0 15px 0 hsla(0, 0%, 0%, 0.25);
+    position: relative;
 }
 
 .alimento img {
@@ -143,11 +144,75 @@ button {
     align-items: center;
     justify-content: space-around;
 
-    margin-right: 5%;
+    margin-right: 8%;
 }
 
 .botaoDiminuir, .botAumentar {
     width: 28%;
     height: 50%;
 
+}
+
+.botaoRemover {
+    position: absolute;
+
+    top: 20%;
+    right: 2%;
+
+    width: 20px;
+    height: 20px;
+
+
+    border: none;
+
+    background-color: #ff4d4d;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.botaoRemover:hover {
+    transform: scale(1.1);
+}
+
+#AvisoOrientacao {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background-image: url("https://malu70.github.io/mindAR/img/xadVerde.png");
+  justify-content: center;
+  align-items: center;
+}
+
+#cardAviso {
+  background-color: white;
+  border-radius: 1.5rem;
+  width: 85vw;
+  max-width: 420px;
+  padding: 48px 32px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#textoAviso {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111;
+  text-align: center;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media screen and (orientation: portrait) and (max-width: 768px) {
+  #AvisoOrientacao {
+    display: flex;
+  }
 }

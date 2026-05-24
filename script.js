@@ -5,6 +5,8 @@ let produtos = [];
 let modelosAtivos = [];
 let modelosDetectados = [];
 let produtosnoPrato = [];
+let mdodalAtivo =false;
+const modal = document.createElement("div");
 
 try {
     let produtosanteriores = localStorage.getItem("produtos");
@@ -262,7 +264,6 @@ function salvar() {
 document.querySelector("a-scene").addEventListener("loaded", carregarProdutos);
 
 function criarModal(mensagem) {
-    const modal = document.createElement("div");
     const controls = document.getElementById("controls");
     const botsJogabilidade = document.getElementById("botsJogabilidade");
 
@@ -270,14 +271,15 @@ function criarModal(mensagem) {
     modal.textContent = mensagem;
     
    controls.insertBefore(modal, botsJogabilidade);
+   modal.style.display = "block";
     
     setTimeout(() => {
-        document.querySelector(".modal").remove();
+        modal.style.display = "none";
     }, 3000);
 }
 
 function AdicionarAlimento() {
-    const modal = document.createElement("div");
+    
     if (produtoAtivo) {
         if (produtoAtivo.peso !== produtosnoPrato.filter(p => p.id !== produtoAtivo.id).map(p => p.peso)[0] && produtosnoPrato.some(p => p.id === produtoAtivo.id)) {
             criarModal(`O Peso do alimento ${produtoAtivo.nome} foi alterado!.`);

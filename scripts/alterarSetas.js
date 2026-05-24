@@ -126,7 +126,4 @@ document.addEventListener("DOMContentLoaded", async () => {
         await new Promise(resolve => setTimeout(resolve, 30));
     }
 
-localStorage.removeItem("produtos");
-localStorage.removeItem("produtosnoPrato");
-
 });
