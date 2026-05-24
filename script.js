@@ -250,7 +250,6 @@ function calcularTotalNutricional() {
     return total;
 }
 
-
 function salvar() {
 
     const dados = JSON.stringify(modelosAtivos);
@@ -258,27 +257,20 @@ function salvar() {
 
     localStorage.setItem("produtos", dados);
     window.location.replace("./resources/confirmacao.html");
-
-
 }
-document.querySelector("a-scene").addEventListener("loaded", carregarProdutos);
 
+document.querySelector("a-scene").addEventListener("loaded", carregarProdutos);
 
 function criarModal(mensagem) {
     const modal = document.createElement("div");
+    const controls = document.getElementById("controls");
+    const botsJogabilidade = document.getElementById("botsJogabilidade");
+
     modal.className = "modal";
     modal.textContent = mensagem;
-    modal.style.position = "fixed";
-    modal.style.top = "80%";
-    modal.style.left = "50%";
-    modal.style.transform = "translate(-50%, 75%)";
-    modal.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
-    modal.style.color = "#fff";
-    modal.style.padding = "20px";
-    modal.style.borderRadius = "10px";
-    modal.style.zIndex = "1000";
-    modal.style.textAlign = "center";
-    document.body.appendChild(modal);
+    
+   controls.insertBefore(modal, botsJogabilidade);
+    
     setTimeout(() => {
         document.querySelector(".modal").remove();
     }, 3000);
