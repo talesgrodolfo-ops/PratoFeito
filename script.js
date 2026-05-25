@@ -297,5 +297,4 @@ function AdicionarAlimento() {
     } else {
         criarModal(`Não foi detectado nenhum alimento para adicionar ao prato. Por favor, escaneie um alimento primeiro.`);
     }
-    console.log(produtosnoPrato.some(p => p.id === produtoAtivo.id)[0].peso);
 }

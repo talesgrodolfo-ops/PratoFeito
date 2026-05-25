@@ -52,6 +52,13 @@ produtos.forEach(produto => {
     const h4 = document.createElement('h4');
     h4.textContent = produto.categoria;
 
+    const botAumentar = document.createElement('button');
+    botAumentar.textContent = "+";
+    botAumentar.className = "botAumentar";
+
+     const pesoP = document.createElement('p');
+    pesoP.textContent = `${produto.peso}g`;
+
     const botDiminuir = document.createElement('button');
     botDiminuir.textContent = "-";
     botDiminuir.className = "botaoDiminuir";
@@ -59,9 +66,6 @@ produtos.forEach(produto => {
     const botremover = document.createElement('button');
     botremover.innerHTML = `<i class="fas fa-trash"></i>`;
     botremover.className = "botaoRemover";
-    botremover.style.color = "red";
-    botremover.style.backgroundColor = "white";
-    botremover.style.border = "none";
     
     botremover.onclick = function () {
         confirmacao = confirm(`Deseja remover o produto ${produto.nome} do prato?`);
@@ -108,12 +112,6 @@ produtos.forEach(produto => {
         }
     }
 
-    const pesoP = document.createElement('p');
-    pesoP.textContent = `${produto.peso}g`;
-
-    const botAumentar = document.createElement('button');
-    botAumentar.textContent = "+";
-    botAumentar.className = "botAumentar";
     botAumentar.onclick = function () {
 
         if (produto.peso >= 10 && produto.peso < 990) {
@@ -145,10 +143,12 @@ produtos.forEach(produto => {
     alimentoDiv.appendChild(bloc1Div);
     alimentoDiv.appendChild(blocPesos);
 
-    blocPesos.appendChild(botremover);
-    blocPesos.appendChild(botDiminuir);
-    blocPesos.appendChild(pesoP);
+    
     blocPesos.appendChild(botAumentar);
+    blocPesos.appendChild(pesoP);
+    blocPesos.appendChild(botDiminuir);
+    blocPesos.appendChild(botremover);
+
 
     container.appendChild(alimentoDiv);
     localStorage.setItem('produtos', JSON.stringify(produtos));
