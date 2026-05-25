@@ -21,10 +21,10 @@ localStorage.setItem("produtos", JSON.stringify(produtos));
 
 addEventListener("DOMContentLoaded", () => {
     if (produtos.length == 0) {
-    const confirmar = document.getElementById("confirmar");
-    confirmar.style.backgroundColor = "gray";
-    confirmar.onclick = null;
-    confirmar.style.cursor = "not-allowed";
+        const confirmar = document.getElementById("confirmar");
+        confirmar.style.backgroundColor = "gray";
+        confirmar.onclick = null;
+        confirmar.style.cursor = "not-allowed";
     }
 });
 
@@ -58,7 +58,7 @@ produtos.forEach(produto => {
     botAumentar.textContent = "+";
     botAumentar.className = "botAumentar";
 
-     const pesoP = document.createElement('p');
+    const pesoP = document.createElement('p');
     pesoP.textContent = `${produto.peso}g`;
 
     const botDiminuir = document.createElement('button');
@@ -68,19 +68,25 @@ produtos.forEach(produto => {
     const botremover = document.createElement('button');
     botremover.innerHTML = `<i class="fas fa-trash"></i>`;
     botremover.className = "botaoRemover";
-    
+
     botremover.onclick = function () {
-        confirmacao = confirm(`Deseja remover o produto ${produto.nome} do prato?`);
-        if (!confirmacao) {
-            return;
+        console.log(produtos.length);
+        console.log(localStorage.getItem("produtosnoPrato"));
+        if (produtos.length == 1) {
+            alert("Você não pode remover o último produto do prato.");
         } else {
-            produtos.splice(produtos.indexOf(produto), 1);
-            localStorage.setItem('produtos', JSON.stringify(produtos));
-            produtosnoPrato.splice(produtosnoPrato.indexOf(produto), 1);
-            localStorage.setItem('produtosnoPrato', JSON.stringify(produtosnoPrato));
-            console.log(`Produto ${produto.nome} removido do prato`);
-            alimentoDiv.remove();
-            window.location.reload();
+            confirmacao = confirm(`Deseja remover o produto ${produto.nome} do prato?`);
+            if (!confirmacao) {
+                return;
+            } else {
+                produtos.splice(produtos.indexOf(produto), 1);
+                localStorage.setItem('produtos', JSON.stringify(produtos));
+                produtosnoPrato.splice(produtosnoPrato.indexOf(produto), 1);
+                localStorage.setItem('produtosnoPrato', JSON.stringify(produtosnoPrato));
+                console.log(`Produto ${produto.nome} removido do prato`);
+                alimentoDiv.remove();
+                window.location.reload();
+            }
         }
     }
 
@@ -99,17 +105,21 @@ produtos.forEach(produto => {
             pesoP.textContent = `${produto.peso}g`;
             localStorage.setItem('produtos', JSON.stringify(produtos));
         } else {
-            confirmacao = confirm(`Deseja remover o produto ${produto.nome} do prato?`);
-            if (!confirmacao) {
-                return;
+            if (produtos.length == 1) {
+                alert("Você não pode remover o último produto do prato.");
             } else {
-                produtos.splice(produtos.indexOf(produto), 1);
-                localStorage.setItem('produtos', JSON.stringify(produtos));
-                produtosnoPrato.splice(produtosnoPrato.indexOf(produto), 1);
-                localStorage.setItem('produtosnoPrato', JSON.stringify(produtosnoPrato));
-                console.log(`Produto ${produto.nome} removido do prato`);
-                alimentoDiv.remove();
-                window.location.reload();
+                confirmacao = confirm(`Deseja remover o produto ${produto.nome} do prato?`);
+                if (!confirmacao) {
+                    return;
+                } else {
+                    produtos.splice(produtos.indexOf(produto), 1);
+                    localStorage.setItem('produtos', JSON.stringify(produtos));
+                    produtosnoPrato.splice(produtosnoPrato.indexOf(produto), 1);
+                    localStorage.setItem('produtosnoPrato', JSON.stringify(produtosnoPrato));
+                    console.log(`Produto ${produto.nome} removido do prato`);
+                    alimentoDiv.remove();
+                    window.location.reload();
+                }
             }
         }
     }
@@ -131,7 +141,7 @@ produtos.forEach(produto => {
             console.log(produtos);
         }
         else {
-
+            alert("O peso do produto não pode ser maior que 990g.");
         }
     }
 
@@ -145,7 +155,7 @@ produtos.forEach(produto => {
     alimentoDiv.appendChild(bloc1Div);
     alimentoDiv.appendChild(blocPesos);
 
-    
+
     blocPesos.appendChild(botAumentar);
     blocPesos.appendChild(pesoP);
     blocPesos.appendChild(botDiminuir);
