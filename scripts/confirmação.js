@@ -17,6 +17,8 @@ if (produtosnoPrato) {
 }
 console.log(produtos);
 
+localStorage.setItem("produtos", JSON.stringify(produtos));
+
 addEventListener("DOMContentLoaded", () => {
     if (produtos.length == 0) {
     const confirmar = document.getElementById("confirmar");

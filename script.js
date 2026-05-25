@@ -5,19 +5,10 @@ let produtos = [];
 let modelosAtivos = [];
 let modelosDetectados = [];
 let produtosnoPrato = [];
-let mdodalAtivo =false;
+let mdodalAtivo = false;
 const modal = document.createElement("div");
 
-try {
-    let produtosanteriores = localStorage.getItem("produtos");
-    if (produtosanteriores) {
-        modelosDetectados = JSON.parse(produtosanteriores);
-    }
-} catch (e) {
-    console.log("erro " + e + " ao procurar produto anterior.");
-}
-
-
+produtosnoPrato = JSON.parse(localStorage.getItem("produtos"));
 
 async function carregarProdutos() {
     try {
@@ -269,32 +260,55 @@ function criarModal(mensagem) {
 
     modal.className = "modal";
     modal.textContent = mensagem;
-    
-   controls.insertBefore(modal, botsJogabilidade);
-   modal.style.display = "block";
-    
+
+    controls.insertBefore(modal, botsJogabilidade);
+    modal.style.display = "block";
+
     setTimeout(() => {
         modal.style.display = "none";
     }, 3000);
 }
 
 function AdicionarAlimento() {
-    
+
     if (produtoAtivo) {
-        if (produtoAtivo.peso !== produtosnoPrato.filter(p => p.id !== produtoAtivo.id).map(p => p.peso)[0] && produtosnoPrato.some(p => p.id === produtoAtivo.id)) {
-            criarModal(`O Peso do alimento ${produtoAtivo.nome} foi alterado!.`);
+
+        if (
+            produtoAtivo.peso !== produtosnoPrato
+                .filter(p => p.id === produtoAtivo.id)
+                .map(p => p.peso)[0]
+            &&
+            produtosnoPrato.some(p => p.id === produtoAtivo.id)
+        ) {
+            produtosnoPrato = produtosnoPrato.map(p =>
+                p.id === produtoAtivo.id ? { ...p, peso: produtoAtivo.peso } : p
+            );
+            criarModal(`O Peso do alimento ${produtoAtivo.nome} foi alterado!`);
+
         } else if (produtosnoPrato.some(p => p.id === produtoAtivo.id)) {
+
             criarModal(`O produto ${produtoAtivo.nome} já está no prato.`);
+
         } else {
-            criarModal(`O alimento ${produtoAtivo.nome} Foi adicionado ao prato!.`);
+
+            criarModal(`O alimento ${produtoAtivo.nome} foi adicionado ao prato!`);
+
         }
 
-
-        produtosnoPrato = produtosnoPrato.filter(p => p.id !== produtoAtivo.id);
         console.log(produtosnoPrato);
+
         produtosnoPrato.push(produtoAtivo);
-        localStorage.setItem("produtosnoPrato", JSON.stringify(produtosnoPrato));
+
+        localStorage.setItem(
+            "produtosnoPrato",
+            JSON.stringify(produtosnoPrato)
+        );
+
     } else {
-        criarModal(`Não foi detectado nenhum alimento para adicionar ao prato. Por favor, escaneie um alimento primeiro.`);
+
+        criarModal(
+            `Não foi detectado nenhum alimento para adicionar ao prato. Por favor, escaneie um alimento primeiro.`
+        );
+
     }
 }
