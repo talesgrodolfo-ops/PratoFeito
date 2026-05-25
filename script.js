@@ -272,43 +272,36 @@ function criarModal(mensagem) {
 function AdicionarAlimento() {
 
     if (produtoAtivo) {
+        if (produtosnoPrato != null) {
+            criarModal(`O alimento ${produtoAtivo.nome} foi adicionado ao prato!`);
+            
+            if (produtoAtivo.peso !== produtosnoPrato.filter(p => p.id === produtoAtivo.id).map(p => p.peso)[0] && produtosnoPrato.some(p => p.id === produtoAtivo.id)) {
 
-        if (
-            produtoAtivo.peso !== produtosnoPrato
-                .filter(p => p.id === produtoAtivo.id)
-                .map(p => p.peso)[0]
-            &&
-            produtosnoPrato.some(p => p.id === produtoAtivo.id)
-        ) {
-            produtosnoPrato = produtosnoPrato.map(p =>
-                p.id === produtoAtivo.id ? { ...p, peso: produtoAtivo.peso } : p
-            );
-            criarModal(`O Peso do alimento ${produtoAtivo.nome} foi alterado!`);
+                produtosnoPrato = produtosnoPrato.map(p => p.id === produtoAtivo.id ? { ...p, peso: produtoAtivo.peso } : p);
+                criarModal(`O Peso do alimento ${produtoAtivo.nome} foi alterado!`);
 
-        } else if (produtosnoPrato.some(p => p.id === produtoAtivo.id)) {
+            } else if (produtosnoPrato.some(p => p.id === produtoAtivo.id)) {
+                criarModal(`O produto ${produtoAtivo.nome} já está no prato.`);
 
-            criarModal(`O produto ${produtoAtivo.nome} já está no prato.`);
+            } else {
+            }
+            console.log(produtosnoPrato);
+
+            produtosnoPrato.push(produtoAtivo);
+
+            localStorage.setItem("produtosnoPrato",JSON.stringify(produtosnoPrato));
+
 
         } else {
+            produtosnoPrato = [produtoAtivo];
 
-            criarModal(`O alimento ${produtoAtivo.nome} foi adicionado ao prato!`);
-
+            localStorage.setItem("produtosnoPrato",JSON.stringify(produtosnoPrato));
         }
-
-        console.log(produtosnoPrato);
-
-        produtosnoPrato.push(produtoAtivo);
-
-        localStorage.setItem(
-            "produtosnoPrato",
-            JSON.stringify(produtosnoPrato)
-        );
 
     } else {
 
-        criarModal(
-            `Não foi detectado nenhum alimento para adicionar ao prato. Por favor, escaneie um alimento primeiro.`
-        );
+        criarModal(`Não foi detectado nenhum alimento para adicionar ao prato. Por favor, escaneie um alimento primeiro.`);
+
 
     }
 }
