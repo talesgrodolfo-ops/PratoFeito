@@ -273,7 +273,6 @@ function AdicionarAlimento() {
 
     if (produtoAtivo) {
         if (produtosnoPrato != null) {
-            criarModal(`O alimento ${produtoAtivo.nome} foi adicionado ao prato!`);
             
             if (produtoAtivo.peso !== produtosnoPrato.filter(p => p.id === produtoAtivo.id).map(p => p.peso)[0] && produtosnoPrato.some(p => p.id === produtoAtivo.id)) {
 
@@ -294,7 +293,7 @@ function AdicionarAlimento() {
 
         } else {
             produtosnoPrato = [produtoAtivo];
-
+            criarModal(`O alimento ${produtoAtivo.nome} foi adicionado ao prato!`);
             localStorage.setItem("produtosnoPrato",JSON.stringify(produtosnoPrato));
         }
 
