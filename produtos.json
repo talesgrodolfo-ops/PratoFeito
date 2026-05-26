@@ -63,7 +63,7 @@
      {
       "id": 4,
       "nome": "Beterraba",
-      "modelo": "https://raw.githubusercontent.com/maLu70/RepositorioModel-PratoFeito/refs/heads/main/beetroot/scene.gltf",
+      "modelo": "https://raw.githubusercontent.com/maLu70/RepositorioModel-PratoFeito/refs/heads/main/beetroot/beterraba.gltf",
       "foto": "https://raw.githubusercontent.com/maLu70/RepositorioModel-PratoFeito/main/img/beteraba.jpg",
       "peso": 100,
       "categoria": "Fibra",
