@@ -270,38 +270,35 @@ function criarModal(mensagem) {
 }
 
 function AdicionarAlimento() {
-
     if (produtoAtivo) {
         if (produtosnoPrato != null) {
-            console.log(produtosnoPrato);   
-            console.log(produtoAtivo.peso);
-            console.log(produtosnoPrato.filter(p => p.id === produtoAtivo.id).map(p => p.peso)[0]);
-            if (produtoAtivo.peso !== produtosnoPrato.filter(p => p.id === produtoAtivo.id).map(p => p.peso)[0] && produtosnoPrato.some(p => p.id === produtoAtivo.id)) {
-                produtosnoPrato = produtosnoPrato.map(p => p.id === produtoAtivo.id ? { ...p, peso: produtoAtivo.peso } : p);
+            const jaExiste = produtosnoPrato.some(p => p.id === produtoAtivo.id);
+            const pesoAnterior = produtosnoPrato.find(p => p.id === produtoAtivo.id)?.peso;
+
+            if (jaExiste && produtoAtivo.peso !== pesoAnterior) {
+            
+                produtosnoPrato = produtosnoPrato.map(p =>
+                    p.id === produtoAtivo.id ? { ...p, peso: produtoAtivo.peso } : p
+                );
                 criarModal(`O Peso do alimento ${produtoAtivo.nome} foi alterado!`);
 
-            } else if (produtosnoPrato.some(p => p.id === produtoAtivo.id)) {
+            } else if (jaExiste) {
                 criarModal(`O produto ${produtoAtivo.nome} já está no prato.`);
+                return;
 
             } else {
+                produtosnoPrato.push(produtoAtivo);
                 criarModal(`O alimento ${produtoAtivo.nome} foi adicionado ao prato!`);
             }
 
-            produtosnoPrato.push(produtoAtivo);
-
-            localStorage.setItem("produtosnoPrato",JSON.stringify(produtosnoPrato));
-
+            localStorage.setItem("produtosnoPrato", JSON.stringify(produtosnoPrato));
 
         } else {
             criarModal(`O alimento ${produtoAtivo.nome} foi adicionado ao prato!`);
             produtosnoPrato = [produtoAtivo];
-            localStorage.setItem("produtosnoPrato",JSON.stringify(produtosnoPrato));
+            localStorage.setItem("produtosnoPrato", JSON.stringify(produtosnoPrato));
         }
-
     } else {
-
         criarModal(`Não foi detectado nenhum alimento para adicionar ao prato. Por favor, escaneie um alimento primeiro.`);
-
-
     }
 }
