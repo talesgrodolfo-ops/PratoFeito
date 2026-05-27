@@ -270,35 +270,37 @@ function criarModal(mensagem) {
 }
 
 function AdicionarAlimento() {
-    if (produtoAtivo) {
-        if (produtosnoPrato != null) {
-            const jaExiste = produtosnoPrato.some(p => p.id === produtoAtivo.id);
-            const pesoAnterior = produtosnoPrato.find(p => p.id === produtoAtivo.id)?.peso;
-
-            if (jaExiste && produtoAtivo.peso !== pesoAnterior) {
-            
-                produtosnoPrato = produtosnoPrato.map(p =>
-                    p.id === produtoAtivo.id ? { ...p, peso: produtoAtivo.peso } : p
-                );
-                criarModal(`O Peso do alimento ${produtoAtivo.nome} foi alterado!`);
-
-            } else if (jaExiste) {
-                criarModal(`O produto ${produtoAtivo.nome} já está no prato.`);
-                return;
-
-            } else {
-                produtosnoPrato.push(produtoAtivo);
-                criarModal(`O alimento ${produtoAtivo.nome} foi adicionado ao prato!`);
-            }
-
-            localStorage.setItem("produtosnoPrato", JSON.stringify(produtosnoPrato));
-
-        } else {
-            criarModal(`O alimento ${produtoAtivo.nome} foi adicionado ao prato!`);
-            produtosnoPrato = [produtoAtivo];
-            localStorage.setItem("produtosnoPrato", JSON.stringify(produtosnoPrato));
-        }
-    } else {
+    if (!produtoAtivo) {
         criarModal(`Não foi detectado nenhum alimento para adicionar ao prato. Por favor, escaneie um alimento primeiro.`);
+        return;
     }
+
+    if (!produtosnoPrato) { // se produtosnoPrato === undefined => !produtosnoPrato = true;
+        criarModal(`O alimento ${produtoAtivo.nome} foi adicionado ao prato!`);
+        produtosnoPrato = [produtoAtivo];
+        localStorage.setItem("produtosnoPrato", JSON.stringify(produtosnoPrato));
+        return;
+    }
+
+    const jaExiste = produtosnoPrato.some((p) => p.id === produtoAtivo.id);
+    const pesoAnterior = produtosnoPrato.find((p) => p.id === produtoAtivo.id)?.peso; // se não achar isso pode ser undefined
+
+    console.log("Produto Ativo:", produtoAtivo);
+    console.log("Produtos no Prato:", produtosnoPrato);
+    console.log("Já Existe:", jaExiste);
+    console.log("Peso Anterior:", pesoAnterior);
+
+    if (jaExiste && produtoAtivo.peso !== pesoAnterior) {
+        produtosnoPrato = produtosnoPrato.map((p) => (p.id === produtoAtivo.id ? { ...p, peso: produtoAtivo.peso } : p));
+        criarModal(`O Peso do alimento ${produtoAtivo.nome} foi alterado!`);
+    } else if (jaExiste) {
+        produtosnoPrato = produtosnoPrato.map((p) => (p.id === produtoAtivo.id ? { ...p, peso: produtoAtivo.peso } : p));
+        criarModal(`O produto ${produtoAtivo.nome} já está no prato.`);
+        return;
+    } else {
+        produtosnoPrato.push(produtoAtivo);
+        criarModal(`O alimento ${produtoAtivo.nome} foi adicionado ao prato!`);
+    }
+
+    localStorage.setItem("produtosnoPrato", JSON.stringify(produtosnoPrato));
 }

@@ -63,13 +63,8 @@
      {
       "id": 4,
       "nome": "Beterraba",    
-<<<<<<< HEAD
       "modelo": "https://reposiitoriomodelos-pratofeito.pages.dev/beetroot/scene.gltf",
       "foto": "https://reposiitoriomodelos-pratofeito.pages.dev/img/beteraba.jpg",
-=======
-      "modelo": "https://raw.githubusercontent.com/maLu70/RepositorioModel-PratoFeito/refs/heads/main/beetroot/beterraba.gltf",
-      "foto": "https://raw.githubusercontent.com/maLu70/RepositorioModel-PratoFeito/main/img/beteraba.jpg",
->>>>>>> f7820af808d3aee6938574bd940c9287fd065e34  
       "peso": 100,
       "categoria": "Fibra",
       "valor_energetico": 49, 
