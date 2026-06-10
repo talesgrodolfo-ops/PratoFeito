@@ -232,22 +232,11 @@ function salvarPratoNoStorage() {
 }
 
 function salvar() {
-    const pratoFinal = produtosnoPrato.map((p) => JSON.parse(JSON.stringify(p)));
-
-    modelosAtivos.forEach((detectado) => {
-        if (!pratoFinal.some((p) => p.id === detectado.id)) {
-            pratoFinal.push(JSON.parse(JSON.stringify(detectado)));
-        }
-    });
 
     if (pratoFinal.length === 0) {
-        criarModal("Escaneie pelo menos um alimento antes de analisar.");
+        criarModal("Adicione pelo menos um alimento antes de analisar.");
         return;
     }
-
-    const dados = JSON.stringify(pratoFinal);
-    localStorage.setItem("produtosnoPrato", dados);
-    localStorage.setItem("produtos", dados);
     window.location.replace("./resources/confirmacao.html");
 }
 
