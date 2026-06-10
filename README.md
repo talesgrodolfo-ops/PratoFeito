@@ -12,7 +12,7 @@ O objetivo principal é montar um prato com os alimentos que você costuma consu
 
 Os cartões são cartas necessárias para o jogo. Eles são físicos e existem um total de **19 cartões**. Cada um representa um único alimento e suas informações nutricionais.
 
-> Clique aqui para você mesmo imprimir e jogar em casa *(link da impressão dos cards @luisMiguel)*
+> [Clique aqui para você mesmo imprimir e jogar em casa](https://raw.githubusercontent.com/talesgrodolfo-ops/reposiitorioModelos_PratoFeito/refs/heads/main/cardsPraoFeito-Impressao.pdf)
 
 ## Como Jogar
 
