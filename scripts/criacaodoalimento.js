@@ -1,7 +1,6 @@
 
 const produtosSalvos = JSON.parse(localStorage.getItem('produtos')) || [];
 
-console.log(produtosSalvos);
 const produtos = produtosSalvos;
 
 if (produtos.length <= 0) {
@@ -43,8 +42,7 @@ if (produtos.length <= 0) {
 
 } else {
     produtos.forEach(produto => {
-        console.log(produto);
-
+        
         const alimentoDiv = document.createElement('div');
         alimentoDiv.className = 'alimento';
 

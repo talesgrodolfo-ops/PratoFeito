@@ -103,7 +103,6 @@ function atualizarProduto(produto, pesoAdicionado) {
     const pesoOriginal = produto.peso;
 
     if (pesoOriginal === 0) {
-        console.error("Erro: peso original não pode ser zero.");
         return;
     }
 
@@ -195,12 +194,10 @@ function removerProdutoDetectado(id) {
 }
 
 function obterModelosAtivos() {
-    console.log(modelosAtivos);
     return modelosAtivos;
 }
 
 function obterModelosDetectados() {
-    console.log(modelosDetectados);
     return modelosDetectados;
 }
 
@@ -283,11 +280,6 @@ function AdicionarAlimento() {
 
     const jaExiste = produtosnoPrato.some((p) => p.id === produtoAtivo.id);
     const pesoAnterior = produtosnoPrato.find((p) => p.id === produtoAtivo.id)?.peso; 
-
-    console.log("Produto Ativo:", produtoAtivo);
-    console.log("Produtos no Prato:", produtosnoPrato);
-    console.log("Já Existe:", jaExiste);
-    console.log("Peso Anterior:", pesoAnterior);
 
     if (jaExiste && produtoAtivo.peso !== pesoAnterior) {
         const produtoAtualizado = JSON.parse(JSON.stringify(produtoAtivo));

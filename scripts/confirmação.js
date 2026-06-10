@@ -48,7 +48,6 @@ addEventListener("DOMContentLoaded", () => {
 });
 
 produtos.forEach(produto => {
-    console.log(produto);
 
     const alimentoDiv = document.createElement('div');
     alimentoDiv.className = 'alimento';
@@ -89,8 +88,6 @@ produtos.forEach(produto => {
     botremover.className = "botaoRemover";
 
     botremover.onclick = function () {
-        console.log(produtos.length);
-        console.log(localStorage.getItem("produtosnoPrato"));
         if (produtos.length == 1) {
             alert("Você não pode remover o último produto do prato.");
         } else {
@@ -100,7 +97,6 @@ produtos.forEach(produto => {
             } else {
                 produtos.splice(produtos.indexOf(produto), 1);
                 salvarPrato();
-                console.log(`Produto ${produto.nome} removido do prato`);
                 alimentoDiv.remove();
                 window.location.reload();
             }
@@ -110,7 +106,6 @@ produtos.forEach(produto => {
     botDiminuir.onclick = function () {
         if (produto.peso > 10 && produto.peso <= 990) {
             atualizarPesoProduto(produto, -10);
-            console.log(`Peso do produto ${produto.nome} diminuído para ${produto.peso}g`);
             pesoP.textContent = `${produto.peso}g`;
             salvarPrato();
         } else {
@@ -123,7 +118,6 @@ produtos.forEach(produto => {
                 } else {
                     produtos.splice(produtos.indexOf(produto), 1);
                     salvarPrato();
-                    console.log(`Produto ${produto.nome} removido do prato`);
                     alimentoDiv.remove();
                     window.location.reload();
                 }
@@ -135,10 +129,8 @@ produtos.forEach(produto => {
 
         if (produto.peso >= 10 && produto.peso < 990) {
             atualizarPesoProduto(produto, 10);
-            console.log(`Peso do produto ${produto.nome} aumentado para ${produto.peso}g`);
             pesoP.textContent = `${produto.peso}g`;
             salvarPrato();
-            console.log(produtos);
         }
         else {
             alert("O peso do produto não pode ser maior que 990g.");
@@ -163,7 +155,4 @@ produtos.forEach(produto => {
 
 
     container.appendChild(alimentoDiv);
-
-    console.log(produtos.length);
-
 });

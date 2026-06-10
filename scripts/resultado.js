@@ -15,11 +15,9 @@ function telafinal() {
         fibras: 0,
         sodio: 0
     };
-    console.log(prodfinal);
 
     const produtoescaneados = JSON.parse(localStorage.getItem("produtos")) || [];
     produtoescaneados.forEach(produto => {
-        console.log("Valor energético: " + produto.valor_energetico);
         prodfinal.peso += produto.peso;
         prodfinal.valor_energetico += produto.valor_energetico;
         prodfinal.proteinas += produto.proteinas;
@@ -28,8 +26,6 @@ function telafinal() {
         prodfinal.fibras += produto.fibras;
         prodfinal.sodio += produto.sodio;
     });
-
-    console.log(prodfinal);
 
     if (prodfinal.valor_energetico > 0) {
         prodfinal.valor_energetico = (prodfinal.valor_energetico/2000).toFixed(2);
@@ -49,7 +45,6 @@ function telafinal() {
     if (prodfinal.sodio > 0) {
         prodfinal.sodio = (prodfinal.sodio/2400).toFixed(2);
     }   
-    console.log(prodfinal);
 
     localStorage.setItem("prodfinal", JSON.stringify(prodfinal));
     window.location.href = "resultado.html";
