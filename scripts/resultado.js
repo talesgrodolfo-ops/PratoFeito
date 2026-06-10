@@ -17,7 +17,7 @@ function telafinal() {
     };
     console.log(prodfinal);
 
-    const produtoescaneados = JSON.parse(localStorage.getItem("produtos"));
+    const produtoescaneados = JSON.parse(localStorage.getItem("produtos")) || [];
     produtoescaneados.forEach(produto => {
         console.log("Valor energético: " + produto.valor_energetico);
         prodfinal.peso += produto.peso;

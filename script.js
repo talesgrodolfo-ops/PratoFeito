@@ -8,7 +8,9 @@ let produtosnoPrato = [];
 let mdodalAtivo = false;
 const modal = document.createElement("div");
 
-produtosnoPrato = JSON.parse(localStorage.getItem("produtos"));
+produtosnoPrato = JSON.parse(localStorage.getItem("produtosnoPrato"))
+    ?? JSON.parse(localStorage.getItem("produtos"))
+    ?? [];
 
 async function carregarProdutos() {
     try {
@@ -139,16 +141,8 @@ function atualizarProduto(produto, pesoAdicionado) {
 function mais() {
     if (modeloAtivo && produtoAtivo && produtoAtivo.peso < 990) {
         atualizarProduto(produtoAtivo, 10);
-        const scale = modeloAtivo.getAttribute("scale");
-        const newScale = {
-            x: scale.x * 1.1,
-            y: scale.y * 1.1,
-            z: scale.z * 1.1
-        };
-
-        modeloAtivo.setAttribute("scale", newScale);
-        produtoAtivo.escala = newScale;
-
+        modeloAtivo.setAttribute("scale",
+            `${produtoAtivo.escala.x} ${produtoAtivo.escala.y} ${produtoAtivo.escala.z}`);
         atualizarPainel();
     }
 }
@@ -156,17 +150,8 @@ function mais() {
 function menos() {
     if (modeloAtivo && produtoAtivo && produtoAtivo.peso > 10) {
         atualizarProduto(produtoAtivo, -10);
-
-        const scale = modeloAtivo.getAttribute("scale");
-        const newScale = {
-            x: scale.x * 0.9,
-            y: scale.y * 0.9,
-            z: scale.z * 0.9
-        };
-
-        modeloAtivo.setAttribute("scale", newScale);
-        produtoAtivo.escala = newScale;
-
+        modeloAtivo.setAttribute("scale",
+            `${produtoAtivo.escala.x} ${produtoAtivo.escala.y} ${produtoAtivo.escala.z}`);
         atualizarPainel();
     }
 }
@@ -243,11 +228,28 @@ function calcularTotalNutricional() {
     return total;
 }
 
+function salvarPratoNoStorage() {
+    const dados = JSON.stringify(produtosnoPrato);
+    localStorage.setItem("produtosnoPrato", dados);
+    localStorage.setItem("produtos", dados);
+}
+
 function salvar() {
+    const pratoFinal = produtosnoPrato.map((p) => JSON.parse(JSON.stringify(p)));
 
-    const dados = JSON.stringify(modelosAtivos);
-    console.log(dados);
+    modelosAtivos.forEach((detectado) => {
+        if (!pratoFinal.some((p) => p.id === detectado.id)) {
+            pratoFinal.push(JSON.parse(JSON.stringify(detectado)));
+        }
+    });
 
+    if (pratoFinal.length === 0) {
+        criarModal("Escaneie pelo menos um alimento antes de analisar.");
+        return;
+    }
+
+    const dados = JSON.stringify(pratoFinal);
+    localStorage.setItem("produtosnoPrato", dados);
     localStorage.setItem("produtos", dados);
     window.location.replace("./resources/confirmacao.html");
 }
@@ -261,10 +263,14 @@ function criarModal(mensagem) {
     modal.className = "modal";
     modal.textContent = mensagem;
 
-    controls.insertBefore(modal, botsJogabilidade);
+    if (!modal.parentElement) {
+        controls.insertBefore(modal, botsJogabilidade);
+    }
+
     modal.style.display = "block";
 
-    setTimeout(() => {
+    clearTimeout(modal._timeout);
+    modal._timeout = setTimeout(() => {
         modal.style.display = "none";
     }, 3000);
 }
@@ -275,15 +281,8 @@ function AdicionarAlimento() {
         return;
     }
 
-    if (!produtosnoPrato) { // se produtosnoPrato === undefined => !produtosnoPrato = true;
-        criarModal(`O alimento ${produtoAtivo.nome} foi adicionado ao prato!`);
-        produtosnoPrato = [produtoAtivo];
-        localStorage.setItem("produtosnoPrato", JSON.stringify(produtosnoPrato));
-        return;
-    }
-
     const jaExiste = produtosnoPrato.some((p) => p.id === produtoAtivo.id);
-    const pesoAnterior = produtosnoPrato.find((p) => p.id === produtoAtivo.id)?.peso; // se não achar isso pode ser undefined
+    const pesoAnterior = produtosnoPrato.find((p) => p.id === produtoAtivo.id)?.peso; 
 
     console.log("Produto Ativo:", produtoAtivo);
     console.log("Produtos no Prato:", produtosnoPrato);
@@ -291,16 +290,16 @@ function AdicionarAlimento() {
     console.log("Peso Anterior:", pesoAnterior);
 
     if (jaExiste && produtoAtivo.peso !== pesoAnterior) {
-        produtosnoPrato = produtosnoPrato.map((p) => (p.id === produtoAtivo.id ? { ...p, peso: produtoAtivo.peso } : p));
+        const produtoAtualizado = JSON.parse(JSON.stringify(produtoAtivo));
+        produtosnoPrato = produtosnoPrato.map((p) => (p.id === produtoAtivo.id ? produtoAtualizado : p));
         criarModal(`O Peso do alimento ${produtoAtivo.nome} foi alterado!`);
     } else if (jaExiste) {
-        produtosnoPrato = produtosnoPrato.map((p) => (p.id === produtoAtivo.id ? { ...p, peso: produtoAtivo.peso } : p));
         criarModal(`O produto ${produtoAtivo.nome} já está no prato.`);
         return;
     } else {
-        produtosnoPrato.push(produtoAtivo);
+        produtosnoPrato.push(JSON.parse(JSON.stringify(produtoAtivo)));
         criarModal(`O alimento ${produtoAtivo.nome} foi adicionado ao prato!`);
     }
 
-    localStorage.setItem("produtosnoPrato", JSON.stringify(produtosnoPrato));
+    salvarPratoNoStorage();
 }

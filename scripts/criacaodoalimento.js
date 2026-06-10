@@ -37,7 +37,7 @@ if (produtos.length <= 0) {
     alimentoDiv.appendChild(bloc1Div);
     alimentoDiv.appendChild(pesoP);
 
-    alimentosPrato.appendChild(alimentoDiv);
+    container.appendChild(alimentoDiv);
 
 
 
