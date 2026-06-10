@@ -232,6 +232,7 @@ function salvarPratoNoStorage() {
 }
 
 function salvar() {
+    const pratoFinal = produtosnoPrato.map((p) => JSON.parse(JSON.stringify(p)));
 
     if (pratoFinal.length === 0) {
         criarModal("Adicione pelo menos um alimento antes de analisar.");
