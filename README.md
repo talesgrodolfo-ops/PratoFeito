@@ -338,7 +338,7 @@ Montar um prato com alimentos habituais, respeitando quantidades adequadas para 
 
 ### Vídeo explicativo
 
-https://www.youtube.com/watch?v=IfmlV2pRZ0M
+https://www.youtube.com/watch?v=nVzyPsrhGxQ
 
 ---
 
