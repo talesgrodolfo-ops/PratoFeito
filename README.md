@@ -27,6 +27,7 @@ PratoFeito/
 ├── script.js                  # Lógica central: AR, prato, modais, persistência
 ├── produtos.json              # Catálogo nutricional e referências de modelos 3D
 ├── 404.html                   # Página de erro
+├── LICENSE                    # Licença do software
 ├── README.md
 │
 ├── css/
@@ -345,3 +346,9 @@ https://www.youtube.com/watch?v=nVzyPsrhGxQ
 ## Aviso legal
 
 Este projeto é um jogo educativo. As informações nutricionais e avaliações não substituem orientação de profissional de saúde ou nutricionista. Consulte um especialista para decisões alimentares individuais.
+
+---
+
+## Licença
+
+Este projeto está licensiado sob a licensa MIT. Consulte o arquivo `LICENSE` para mais detalhes.
